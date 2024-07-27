@@ -1,5 +1,5 @@
 #![no_std]
-use gstd::{async_main, collections::HashMap, msg, prelude::*, ActorId};
+use gstd::{async_main, msg, prelude::*};
 use io::*;
 
 // 1. Create the main state as a static variable.
@@ -41,7 +41,7 @@ impl CustomStruct {
     async fn fourthmethod(&mut self, input: u128) -> Result<Events, Errors> {
         
          // Update your state with a String input
-         self.extralargenumber = input.clone();
+         self.power = input.clone();
 
          Ok(Events::FirstEvent)
     }
@@ -80,7 +80,7 @@ async fn main() {
         Actions::Id(input) => state.firstmethod(input), // Here, we call the implementation
         Actions::Active(input) => state.secondmethod(input).await, // Here, we call the implementation
         Actions::Description(input) => state.thirdmethod(input).await, // Here, we call the implementation
-        Actions::Extralargenumber(input) => state.fourthmethod(input).await, // Here, we call the implementation
+        Actions::Power(input) => state.fourthmethod(input).await, // Here, we call the implementation
     };
     msg::reply(reply, 0).expect("Error in sending a reply");
 }

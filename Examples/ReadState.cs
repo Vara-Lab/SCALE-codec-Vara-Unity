@@ -6,7 +6,7 @@ using System.Text;
 using Substrate.NetApi.Model.Extrinsics;
 using VaraExt = Substrate.Vara.NET.NetApiExt.Generated;
 
-public class ReadStateDecode : MonoBehaviour
+public class ReadStates : MonoBehaviour
 {
     private VaraExt.SubstrateClientExt _clientvara;
     private string url;
@@ -67,13 +67,16 @@ public class ReadStateDecode : MonoBehaviour
         return bytes;
     }
 
+   // Customize the structure of your smart contract
     [Serializable]
     public class Example
     {
+
+        // Add the same fields from your smart contract
         public uint Id { get; set; }
         public bool Active { get; set; }
         public string Description { get; set; }
-        public BigInteger ExtraLargeNumber { get; set; }
+        public BigInteger Power { get; set; }
 
         public static Example Decode(byte[] bytes)
         {
@@ -104,15 +107,17 @@ public class ReadStateDecode : MonoBehaviour
             byte[] u128Bytes = new byte[16];
             Array.Copy(bytes, index, u128Bytes, 0, 16);
             Array.Reverse(u128Bytes); // Convert to Big-Endian for BigInteger
-            BigInteger extraLargeNumber = new BigInteger(u128Bytes);
+            BigInteger power = new BigInteger(u128Bytes);
             index += 16;
 
+
+             // Add the same fields from your smart contract
             return new Example
             {
                 Id = id,
                 Active = active,
                 Description = description,
-                ExtraLargeNumber = extraLargeNumber
+                Power = power
             };
         }
 
@@ -155,10 +160,12 @@ public class ReadStateDecode : MonoBehaviour
 
             return length;
         }
-
+       
+        // Add the same fields from your smart contract
         public override string ToString()
+
         {
-            return $"Id: {Id}, Active: {Active}, Description: {Description}, ExtraLargeNumber: {ExtraLargeNumber}";
+            return $"Id: {Id}, Active: {Active}, Description: {Description}, Power: {Power}";
         }
     }
 }

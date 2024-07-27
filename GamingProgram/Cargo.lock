@@ -392,6 +392,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "gamingprogram"
+version = "0.1.3"
+dependencies = [
+ "gear-wasm-builder",
+ "gstd",
+ "io",
+ "parity-scale-codec",
+ "scale-info",
+]
+
+[[package]]
 name = "gcore"
 version = "1.4.2"
 source = "git+https://github.com/gear-tech/gear?tag=v1.4.2#7fa6b77799c260ada2d7d11b7fdd5a0e77a76a7e"
@@ -1073,17 +1084,6 @@ dependencies = [
  "proc-macro2",
  "quote",
  "unicode-ident",
-]
-
-[[package]]
-name = "template"
-version = "0.1.3"
-dependencies = [
- "gear-wasm-builder",
- "gstd",
- "io",
- "parity-scale-codec",
- "scale-info",
 ]
 
 [[package]]
